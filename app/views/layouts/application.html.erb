@@ -11,7 +11,10 @@
   <body>
     <%= render 'layouts/header' %>
       <main>
-        <p id="notice"><%= notice %></p>
+        <% flash.each do |key, value| %>
+        <p id="notice"><%= value %></p>
+        <% end %>
+        <%= yield %>
       </main>
     <%= render 'layouts/footer' %>
   </body>
