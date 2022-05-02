@@ -1,3 +1,4 @@
+<% if users.count > 0 %>
 <table class='table'>
   <thead>
     <tr>
@@ -11,8 +12,14 @@
       <tr>
         <td><%= image_tag user.get_profile_image(50,50) %></td>
         <td><%= user.name %></td>
+        <td>フォロー数：<%= user.follower.count %></td>
+        <td>フォロワー数：<%= user.followed.count %></td>
+        <td><%= render 'relationships/follow', user: user %></td>
         <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
