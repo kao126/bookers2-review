@@ -29,6 +29,7 @@
 <div class='row'>
   <% if user != current_user %>
     <%= render 'relationships/follow', user: user %>
+    <%= link_to 'Begin Chat', chats_path(@user.id) %>
   <% else %>
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" do %>
       <i class="fas fa-user-cog"></i>
