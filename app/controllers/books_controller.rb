@@ -2,7 +2,9 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @books = Book.all
+    @books = Book.includes(:favorited_users).sort{|a,b|
+      b.favorited_users.size <=>
+      a.favorited_users.size}
     @book = Book.new
   end
 
