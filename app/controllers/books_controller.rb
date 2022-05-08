@@ -2,7 +2,12 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @books = Book.all
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorited_users).sort {|a,b|
+      b.favorites.where(created_at: from...to).size <=>
+      a.favorites.where(created_at: from...to).size
+    }
     @book = Book.new
   end
 
@@ -22,6 +27,10 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_new = Book.new
     @comment = BookComment.new
+    impressionist(@book, nil, unique: [:ip_address])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+    end
   end
 
   def edit
