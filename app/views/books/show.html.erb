@@ -22,7 +22,7 @@
             <%= render 'favorites/btn', book: @book %>
           </td>
           <td>コメント数：<%= @book.book_comments.count %></td>
-          <td id="star-rate<%= @book.id%>"></td>
+          <td id="star-rate<%= @book.id %>"></td>
             <script>
               $('#star-rate<%= @book.id %>').empty();
               $('#star-rate<%= @book.id%>').raty({
