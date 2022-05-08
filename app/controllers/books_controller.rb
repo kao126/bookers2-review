@@ -2,13 +2,7 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    if params[:latest]
-      @books = Book.latest
-    elsif params[:rate_count]
-      @books = Book.rate_count
-    else
-      @books = Book.all
-    end
+    @books = Book.all.order(params[:sort])
     @book = Book.new
   end
 
