@@ -8,6 +8,11 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :category %>
+    <%= f.text_field :name, class: 'form-control book_tags' %>
+  </div>
+
   <% if book.id == nil %>
   <div class="form-group" id="star">
     <%= f.label :rate %>
