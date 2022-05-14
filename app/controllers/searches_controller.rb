@@ -7,9 +7,11 @@ class SearchesController < ApplicationController
     @word = params[:word]
 
     if @range == "User"
-      @users = User.search_for(@search, @word)
+      @records = User.search_for(@search, @word)
+    elsif @range == "Book"
+      @records = Book.search_for(@search, @word)
     else
-      @books = Book.search_for(@search, @word)
+      @records = Tag.search_for(@search, @word)
     end
   end
 end

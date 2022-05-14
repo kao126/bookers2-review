@@ -3,19 +3,13 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.order(params[:sort])
-    if params[:tag_id]
-      @tag = Tag.find(params[:tag_id])
-      @books = @tag.book.all.order(created_at: :desc)
-    else
-      @books = Book.all
-    end
     @book = Book.new
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    tag_list = params[:book][:name].split(",")
+    tag_list = params[:book][:tag_name].split(",")
     if @book.save
       @book.save_tag(tag_list)
       redirect_to book_path(@book.id), notice: "You have created book successfully."
