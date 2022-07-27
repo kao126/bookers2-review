@@ -30,9 +30,6 @@
           <%= render 'favorites/btn', book: book %>
         </td>
         <td>コメント数：<%= book.book_comments.count %></td>
-<<<<<<< HEAD
-        <td>閲覧数：<%= book.view_counts.count %></td>
-=======
         <td id="star-rate<%= book.id %>"></td>
           <script>
             $('#star-rate<%= book.id %>').empty();
@@ -46,7 +43,7 @@
               score: <%= book.rate %>,
             });
           </script>
->>>>>>> review
+        <td>閲覧数：</td>
       </tr>
     <% end %>
   </tbody>
