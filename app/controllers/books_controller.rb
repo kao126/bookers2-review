@@ -2,19 +2,25 @@ class BooksController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
+<<<<<<< HEAD
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @books = Book.includes(:favorited_users).sort {|a,b|
       b.favorites.where(created_at: from...to).size <=>
       a.favorites.where(created_at: from...to).size
     }
+=======
+    @books = Book.all.order(params[:sort])
+>>>>>>> review
     @book = Book.new
   end
 
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    tag_list = params[:book][:tag_name].split(",")
     if @book.save
+      @book.save_tag(tag_list)
       redirect_to book_path(@book.id), notice: "You have created book successfully."
     else
       @books = Book.all
@@ -55,7 +61,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body, :rate)
   end
 
   def ensure_correct_user

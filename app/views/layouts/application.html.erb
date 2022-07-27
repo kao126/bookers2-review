@@ -14,9 +14,12 @@
         <% flash.each do |key, value| %>
         <p id="notice"><%= value %></p>
         <% end %>
-        <div class="d-flex justify-content-center mb-2">
-          <%= render 'searches/form' %>
+        <div class="container">
+          <div class="row justify-content-start mb-2">
+            <div class="mr-3"><%= render 'searches/form' %><%= render 'searches/tag_form' %></div>
+          </div>
         </div>
+
         <%= yield %>
       </main>
     <%= render 'layouts/footer' %>

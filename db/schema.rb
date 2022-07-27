@@ -10,8 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 
 ActiveRecord::Schema.define(version: 2022_05_08_073759) do
+=======
+ActiveRecord::Schema.define(version: 2022_05_09_022255) do
+>>>>>>> review
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,12 +54,20 @@ ActiveRecord::Schema.define(version: 2022_05_08_073759) do
     t.float "rate"
   end
 
+  create_table "book_tags", force: :cascade do |t|
+    t.integer "book_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+<<<<<<< HEAD
     t.integer "impressions_count", default: 0
   end
 
@@ -65,6 +77,9 @@ ActiveRecord::Schema.define(version: 2022_05_08_073759) do
     t.text "message"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+=======
+    t.float "rate"
+>>>>>>> review
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -107,6 +122,7 @@ ActiveRecord::Schema.define(version: 2022_05_08_073759) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< HEAD
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,6 +131,10 @@ ActiveRecord::Schema.define(version: 2022_05_08_073759) do
   create_table "user_rooms", force: :cascade do |t|
     t.integer "user_id"
     t.integer "room_id"
+=======
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+>>>>>>> review
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
